@@ -1,25 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { FaHandScissors, FaHandRock, FaHandPaper } from "react-icons/fa";
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div class="app">
+        <header class="header">
+          <h1>Rock Paper Scissors</h1>
+          <button id="restart" class="restart-btn">
+            Restart Game
+          </button>
+          <div id="score" class="score">
+            <p>Player: 0</p>
+            <p>Computer: 0</p>
+          </div>
+        </header>
+        <h2>Make Your Selection</h2>
+        <div class="choices">
+          <div id="rock" class="choice">
+            <FaHandRock size={100} />
+          </div>
+          <div id="paper" class="choice">
+            <FaHandPaper size={100} />
+          </div>
+          <div id="scissors" class="choice">
+            <FaHandScissors size={100} />
+          </div>
+        </div>
+      </div>
+      <div class="modal">
+        <div id="result" class="modal-content" />
+      </div>
+    </>
   );
 }
 
