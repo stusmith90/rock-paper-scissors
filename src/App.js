@@ -19,13 +19,13 @@ function App() {
         <h2>Make Your Selection</h2>
         <div class="choices">
           <div id="rock" class="choice">
-            <FaHandRock size={100} />
+            <FaHandRock size={200} />
           </div>
           <div id="paper" class="choice">
-            <FaHandPaper size={100} />
+            <FaHandPaper size={200} />
           </div>
           <div id="scissors" class="choice">
-            <FaHandScissors size={100} />
+            <FaHandScissors size={200} />
           </div>
         </div>
       </div>
