@@ -2,54 +2,90 @@ import React from "react";
 import { FaHandScissors, FaHandRock, FaHandPaper } from "react-icons/fa";
 import "./App.css";
 
-function App() {
-  // textInput must be declared here so the ref can refer to it
-  let rock = React.createRef();
-  let paper = React.createRef();
-  let scissors = React.createRef();
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { playerValue: "", computerValue: "" };
 
-  function handleClick(e) {
-    e.preventDefault();
-    console.log(e.target.id);
-    console.log("The link was clicked.");
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  return (
-    <>
-      <div class="app">
-        <header class="header">
-          <h1>Rock Paper Scissors</h1>
-          <button id="restart" class="restart-btn">
-            Restart Game
-          </button>
-          <div id="score" class="score">
-            <p>Player: 0</p>
-            <p>Computer: 0</p>
-          </div>
-        </header>
-        <h2>Make Your Selection</h2>
-        <div class="choices">
-          <div id="rock" class="choice" ref={rock} onClick={handleClick}>
-            <FaHandRock size={200} />
-          </div>
-          <div id="paper" class="choice" ref={paper} onClick={handleClick}>
-            <FaHandPaper size={200} />
-          </div>
-          <div
-            id="scissors"
-            class="choice"
-            ref={scissors}
-            onClick={handleClick}
-          >
-            <FaHandScissors size={200} />
+  handleClick(e) {
+    e.preventDefault();
+    this.setState({ playerValue: e.currentTarget.id });
+    this.getComputerChoice();
+  }
+
+  getComputerChoice() {
+    const rand = Math.random();
+    if (rand < 0.34) {
+      this.setState({ computerValue: "rock" });
+    } else if (rand <= 0.67) {
+      this.setState({ computerValue: "paper" });
+    } else {
+      this.setState({ computerValue: "scissors" });
+    }
+  }
+
+  render() {
+    const scoreboard = {
+      player: 0,
+      computer: 0
+    };
+
+    console.log(this.state.playerValue);
+    console.log(this.state.computerValue);
+    // textInput must be declared here so the ref can refer to it
+    let rock = React.createRef();
+    let paper = React.createRef();
+    let scissors = React.createRef();
+    return (
+      <>
+        <div class="app">
+          <header class="header">
+            <h1>Rock Paper Scissors</h1>
+            <button id="restart" class="restart-btn">
+              Restart Game
+            </button>
+            <div id="score" class="score">
+              <p>Player: 0</p>
+              <p>Computer: 0</p>
+            </div>
+          </header>
+          <h2>Make Your Selection</h2>
+          <div class="choices">
+            <button
+              id="rock"
+              class="choice"
+              ref={rock}
+              onClick={this.handleClick}
+            >
+              <FaHandRock size={200} />
+            </button>
+            <button
+              id="paper"
+              class="choice"
+              ref={paper}
+              onClick={this.handleClick}
+            >
+              <FaHandPaper size={200} />
+            </button>
+            <button
+              id="scissors"
+              class="choice"
+              ref={scissors}
+              onClick={this.handleClick}
+            >
+              <FaHandScissors size={200} />
+            </button>
           </div>
         </div>
-      </div>
-      <div class="modal">
-        <div id="result" class="modal-content" />
-      </div>
-    </>
-  );
+        <div class="modal">
+          <div id="result" class="modal-content" />
+        </div>
+      </>
+    );
+  }
 }
 
 export default App;
