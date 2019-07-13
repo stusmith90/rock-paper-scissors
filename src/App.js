@@ -28,11 +28,6 @@ class App extends React.Component {
   }
 
   render() {
-    const scoreboard = {
-      player: 0,
-      computer: 0
-    };
-
     console.log(this.state.playerValue);
     console.log(this.state.computerValue);
     // textInput must be declared here so the ref can refer to it
@@ -42,21 +37,21 @@ class App extends React.Component {
     return (
       <>
         <div className="app">
-          <header class="header">
+          <header className="header">
             <h1>Rock Paper Scissors</h1>
-            <button id="restart" class="restart-btn">
+            <button id="restart" className="restart-btn">
               Restart Game
             </button>
-            <div id="score" class="score">
+            <div id="score" className="score">
               <p>Player: 0</p>
               <p>Computer: 0</p>
             </div>
           </header>
           <h2>Make Your Selection</h2>
-          <div class="choices">
+          <div className="choices">
             <button
               id="rock"
-              class="choice"
+              className="choice"
               ref={rock}
               onClick={this.handleClick}
             >
@@ -64,7 +59,7 @@ class App extends React.Component {
             </button>
             <button
               id="paper"
-              class="choice"
+              className="choice"
               ref={paper}
               onClick={this.handleClick}
             >
@@ -72,7 +67,7 @@ class App extends React.Component {
             </button>
             <button
               id="scissors"
-              class="choice"
+              className="choice"
               ref={scissors}
               onClick={this.handleClick}
             >
@@ -80,8 +75,8 @@ class App extends React.Component {
             </button>
           </div>
         </div>
-        <div class="modal">
-          <div id="result" class="modal-content" />
+        <div className="modal">
+          <div id="result" className="modal-content" />
         </div>
       </>
     );
