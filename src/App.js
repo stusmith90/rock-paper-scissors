@@ -13,6 +13,19 @@ class App extends React.Component {
     e.preventDefault();
     this.setState({ playerValue: e.currentTarget.id });
     this.getComputerChoice();
+    const winner = this.getWinner(
+      this.state.playerValue,
+      this.state.computerValue
+    );
+    if (winner === "player") {
+      this.setState(state => ({
+        player: state.player + 1
+      }));
+    } else if (winner === "computer") {
+      this.setState(state => ({
+        computer: state.computer + 1
+      }));
+    }
   }
 
   getComputerChoice() {
@@ -51,21 +64,7 @@ class App extends React.Component {
     }
   }
 
-  showWinner(winner, computerChoice) {
-    if (winner === "player") {
-      // Inc player score
-    }
-  }
-
   render() {
-    const winner = this.getWinner(
-      this.state.playerValue,
-      this.state.computerValue
-    );
-    const showWinner = showWinner(winner, this.state.computerValue);
-
-    console.log(winner);
-
     // textInput must be declared here so the ref can refer to it
     return (
       <>
