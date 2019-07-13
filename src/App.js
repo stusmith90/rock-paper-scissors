@@ -41,7 +41,7 @@ class App extends React.Component {
     let scissors = React.createRef();
     return (
       <>
-        <div class="app">
+        <div className="app">
           <header class="header">
             <h1>Rock Paper Scissors</h1>
             <button id="restart" class="restart-btn">
