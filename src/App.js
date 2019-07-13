@@ -5,8 +5,7 @@ import "./App.css";
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { playerValue: "", computerValue: "" };
-
+    this.state = { playerValue: "", computerValue: "", player: 0, computer: 0 };
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -27,13 +26,47 @@ class App extends React.Component {
     }
   }
 
+  // Get game winner
+  getWinner(p, c) {
+    if (p === c) {
+      return "draw";
+    } else if (p === "rock") {
+      if (c === "paper") {
+        return "computer";
+      } else {
+        return "player";
+      }
+    } else if (p === "paper") {
+      if (c === "scissors") {
+        return "computer";
+      } else {
+        return "player";
+      }
+    } else if (p === "scissors") {
+      if (c === "rock") {
+        return "computer";
+      } else {
+        return "player";
+      }
+    }
+  }
+
+  showWinner(winner, computerChoice) {
+    if (winner === "player") {
+      // Inc player score
+    }
+  }
+
   render() {
-    console.log(this.state.playerValue);
-    console.log(this.state.computerValue);
+    const winner = this.getWinner(
+      this.state.playerValue,
+      this.state.computerValue
+    );
+    const showWinner = showWinner(winner, this.state.computerValue);
+
+    console.log(winner);
+
     // textInput must be declared here so the ref can refer to it
-    let rock = React.createRef();
-    let paper = React.createRef();
-    let scissors = React.createRef();
     return (
       <>
         <div className="app">
@@ -49,28 +82,13 @@ class App extends React.Component {
           </header>
           <h2>Make Your Selection</h2>
           <div className="choices">
-            <button
-              id="rock"
-              className="choice"
-              ref={rock}
-              onClick={this.handleClick}
-            >
+            <button id="rock" className="choice" onClick={this.handleClick}>
               <FaHandRock size={200} />
             </button>
-            <button
-              id="paper"
-              className="choice"
-              ref={paper}
-              onClick={this.handleClick}
-            >
+            <button id="paper" className="choice" onClick={this.handleClick}>
               <FaHandPaper size={200} />
             </button>
-            <button
-              id="scissors"
-              className="choice"
-              ref={scissors}
-              onClick={this.handleClick}
-            >
+            <button id="scissors" className="choice" onClick={this.handleClick}>
               <FaHandScissors size={200} />
             </button>
           </div>
