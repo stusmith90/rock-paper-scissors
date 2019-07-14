@@ -15,11 +15,8 @@ class App extends React.Component {
   handleClick(e) {
     e.preventDefault();
     let playerValue = e.currentTarget.id;
-    console.log(playerValue);
     let getComputerChoice = this.getComputerChoice();
-    console.log(getComputerChoice);
     let winner = this.getWinner(playerValue, getComputerChoice);
-    console.log(winner);
     this.whoWon(winner);
   }
 
