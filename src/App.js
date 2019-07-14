@@ -5,37 +5,43 @@ import "./App.css";
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { playerValue: "", computerValue: "", player: 0, computer: 0 };
+    this.state = {
+      player: 0,
+      computer: 0
+    };
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick(e) {
     e.preventDefault();
-    this.setState({ playerValue: e.currentTarget.id });
-    this.getComputerChoice();
-    const winner = this.getWinner(
-      this.state.playerValue,
-      this.state.computerValue
-    );
-    if (winner === "player") {
-      this.setState(state => ({
-        player: state.player + 1
-      }));
-    } else if (winner === "computer") {
-      this.setState(state => ({
-        computer: state.computer + 1
-      }));
-    }
+    let playerValue = e.currentTarget.id;
+    console.log(playerValue);
+    let getComputerChoice = this.getComputerChoice();
+    console.log(getComputerChoice);
+    let winner = this.getWinner(playerValue, getComputerChoice);
+    console.log(winner);
+    this.whoWon(winner);
   }
 
+  whoWon(winner) {
+    if (winner === "player") {
+      this.setState(state => {
+        return { player: state.player + 1 };
+      });
+    } else if (winner === "computer") {
+      this.setState(state => {
+        return { computer: state.computer + 1 };
+      });
+    }
+  }
   getComputerChoice() {
     const rand = Math.random();
     if (rand < 0.34) {
-      this.setState({ computerValue: "rock" });
+      return "rock";
     } else if (rand <= 0.67) {
-      this.setState({ computerValue: "paper" });
+      return "paper";
     } else {
-      this.setState({ computerValue: "scissors" });
+      return "scissors";
     }
   }
 
@@ -63,7 +69,6 @@ class App extends React.Component {
       }
     }
   }
-
   render() {
     // textInput must be declared here so the ref can refer to it
     return (
@@ -75,21 +80,21 @@ class App extends React.Component {
               Restart Game
             </button>
             <div id="score" className="score">
-              <p>Player: 0</p>
-              <p>Computer: 0</p>
+              <p>Player: {this.state.player}</p>
+              <p>Computer: {this.state.computer}</p>
             </div>
           </header>
           <h2>Make Your Selection</h2>
           <div className="choices">
-            <button id="rock" className="choice" onClick={this.handleClick}>
+            <div id="rock" className="choice" onClick={this.handleClick}>
               <FaHandRock size={200} />
-            </button>
-            <button id="paper" className="choice" onClick={this.handleClick}>
+            </div>
+            <div id="paper" className="choice" onClick={this.handleClick}>
               <FaHandPaper size={200} />
-            </button>
-            <button id="scissors" className="choice" onClick={this.handleClick}>
+            </div>
+            <div id="scissors" className="choice" onClick={this.handleClick}>
               <FaHandScissors size={200} />
-            </button>
+            </div>
           </div>
         </div>
         <div className="modal">
