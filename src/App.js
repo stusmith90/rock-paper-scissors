@@ -1,4 +1,5 @@
 import React from "react";
+import Popup from "./Components/Popup";
 import { FaHandScissors, FaHandRock, FaHandPaper } from "react-icons/fa";
 import "./App.css";
 
@@ -7,7 +8,10 @@ class App extends React.Component {
     super(props);
     this.state = {
       player: 0,
-      computer: 0
+      computer: 0,
+      playerValue: "",
+      computerValue: "",
+      showPopup: false
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -15,9 +19,18 @@ class App extends React.Component {
   handleClick(e) {
     e.preventDefault();
     let playerValue = e.currentTarget.id;
-    let getComputerChoice = this.getComputerChoice();
-    let winner = this.getWinner(playerValue, getComputerChoice);
+    let computerValue = this.getComputerChoice();
+    this.setState({
+      computerValue
+    });
+    this.setState({
+      playerValue
+    });
+    let winner = this.getWinner(playerValue, computerValue);
     this.whoWon(winner);
+    this.setState({
+      showPopup: !this.state.showPopup
+    });
   }
 
   whoWon(winner) {
@@ -94,9 +107,13 @@ class App extends React.Component {
             </div>
           </div>
         </div>
-        <div className="modal">
-          <div id="result" className="modal-content" />
-        </div>
+        {this.state.showPopup ? (
+          <Popup
+            playerChoice={this.state.playerValue}
+            computerChoice={this.state.computerValue}
+            handleClick={this.handleClick.bind(this)}
+          />
+        ) : null}
       </>
     );
   }
