@@ -8,7 +8,7 @@ class Popup extends React.Component {
         <div className="popup_inner">
           <p>Player Choice: {this.props.playerChoice}</p>
           <p>Computer Choice: {this.props.computerChoice}</p>
-          <button onClick={this.props.handleClick}>X</button>
+          <p>Winner: {this.props.winner}</p>
         </div>
       </div>
     );
