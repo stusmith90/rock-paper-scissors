@@ -21,18 +21,12 @@ class App extends React.Component {
     e.preventDefault();
     let playerValue = e.currentTarget.id;
     let computerValue = this.getComputerChoice();
-    this.setState({
-      computerValue
-    });
-    this.setState({
-      playerValue
-    });
     let winner = this.getWinner(playerValue, computerValue);
-    this.setState({
-      winner
-    });
     this.whoWon(winner);
     this.setState({
+      computerValue,
+      playerValue,
+      winner,
       showPopup: !this.state.showPopup
     });
     setTimeout(() => {
