@@ -11,6 +11,7 @@ class App extends React.Component {
       computer: 0,
       playerValue: "",
       computerValue: "",
+      winner: "",
       showPopup: false
     };
     this.handleClick = this.handleClick.bind(this);
@@ -27,10 +28,18 @@ class App extends React.Component {
       playerValue
     });
     let winner = this.getWinner(playerValue, computerValue);
+    this.setState({
+      winner
+    });
     this.whoWon(winner);
     this.setState({
       showPopup: !this.state.showPopup
     });
+    setTimeout(() => {
+      this.setState({
+        showPopup: false
+      });
+    }, 4000);
   }
 
   whoWon(winner) {
@@ -111,7 +120,7 @@ class App extends React.Component {
           <Popup
             playerChoice={this.state.playerValue}
             computerChoice={this.state.computerValue}
-            handleClick={this.handleClick.bind(this)}
+            winner={this.state.winner}
           />
         ) : null}
       </>

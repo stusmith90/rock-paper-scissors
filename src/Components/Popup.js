@@ -6,9 +6,9 @@ class Popup extends React.Component {
     return (
       <div className="popup">
         <div className="popup_inner">
-          <p>player Choice: {this.props.playerChoice}</p>
+          <p>Player Choice: {this.props.playerChoice}</p>
           <p>Computer Choice: {this.props.computerChoice}</p>
-          <button onClick={this.props.handleClick}>close me</button>
+          <p>Winner: {this.props.winner}</p>
         </div>
       </div>
     );

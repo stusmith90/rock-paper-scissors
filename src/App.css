@@ -171,3 +171,22 @@ body {
   border-radius: 20px;
   background: white;
 }
+
+.popup_inner p {
+  text-align: center;
+  font-size: 35px;
+}
+
+.popup_inner button {
+  width: 40%;
+  margin-left: 30%;
+  margin-right: 30%;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  font-size: 35px;
+}
+.popup_inner button:hover {
+  font-size: 40px;
+  cursor: pointer;
+}
